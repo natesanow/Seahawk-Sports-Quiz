@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="./assets/css/style.css" />
+    <title>Seahawks Sports Quiz</title>
+  </head>
+  <body>
+    <header>
+        <p id="view-high-scores">View High Scores</p>
+        <p>Time: <span id="time">0</span></p>
+    </header>
+    <main>
+        <section id="Intro">
+            <h1>Seahawks Sports Quiz</h1>
+            <p> Try to answer the following questions within the time limit. Each wrong answer will penalize your score by 10 seconds.</p>
+            <button id="btn-start-quiz">Start Quiz</button>
+        </section>
+        <section id="quiz" class="hidden">
+            <h1 id="question">Question</h1>
+            <div id="answers"></div>
+            <h2 id="correct-incorrect"></h2>
+        </section>
+        <section id="finished" class="hidden">
+            <h1>Quiz Completed!</h1>
+            <p>Your Final Score is <span id="score">0</span>.</p>
+            <form id="form">
+                <label for="initials">Enter Initials: </label>
+                <input type="text" name="initials" id="initials" />
+                <input type="submit" value="Submit" id="submit" />
+            </form>
+        </section>
+        <section id="high-scores" class="hidden">
+            <h1>High Scores</h1>
+            <ul id="high-scores-container"></ul>
+            <button id="btn-restart">Restart</button>
+            <button id="btn-clear-high-scores">Clear High Scores</button>
+        </section>
+
+    </main>
+   <script src="assets/js/script.js"></script>
+  </body>
+</html>
