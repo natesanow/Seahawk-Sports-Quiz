@@ -95,6 +95,34 @@ function renderQuestion () {
     });
 }
 
+function nextQuestion() {
+    if (this.innerHTML === questionsArray[currentQuestionIndex].correct) {
+        correctIncorrectText.innerHTML = "Correct";
+        timeRemaining += 10;
+    } else {
+        correctIncorrectText.innerHTML = "Incorrect";
+        timeRemaining -= 10;
+    }
+    currentQuestionIndex++;
+    if (timeRemaining == 0 || currentQuestionIndex == questionArray.length) {
+        endQuiz();
+    }   else {
+        renderQuestion();
+    }
+}
+
+function endQuiz() {
+    quizContainerEl.classList.add("hidden");
+    completedContainerEl.classList.remove("hidden");
+    scoreContainerEl.innerHTML = timeRemaining;
+}
+
+function makeLi(text) {
+    var li = document.createElement("li");
+    li.textContent = text;
+    highScoresContainerEl.appendChild(li);
+}
+
 
 
 
