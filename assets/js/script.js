@@ -1,7 +1,7 @@
 var answersContainerEl = document.querySelector("#answers");
 var correctIncorrectText = document.querySelector("#correct-incorrect");
 var countdownEl = document.querySelector("#time");
-var completedContainerEl = document.querySelector("#finished");
+var finishedContainerEl = document.querySelector("#finished");
 var introductionContainerEl = document.querySelector("#Intro");
 var questionContainerEl = document.querySelector("#question");
 var quizContainerEl = document.querySelector("#quiz");
@@ -10,7 +10,7 @@ var startQuizButtonEl = document.querySelector("#btn-start-quiz");
 var clearScoresButtonEl = document.querySelector("#btn-clear-high-scores");
 var initialsInputEl = document.querySelector("#initials");
 var formEl = document.querySelector("#form");
-var restartButton = document.querySelector("#btn-restart");
+var restartButtonEl = document.querySelector("#btn-restart");
 var highScoresContainerEl = document.querySelector("#high-scores-container");
 var scoresContainer = document.querySelector("#high-scores");
 
@@ -60,7 +60,7 @@ viewHighScoresLinkEl.addEventListener("click", function() {
     scoreContainerEl.classList.remove("hidden");
     introductionContainerEl.classList.add("hidden");
     quizContainerEl.classList.add("hidden");
-    completedContainerEl.classList.add("hidden");
+    finishedContainerEl.classList.add("hidden");
 });
 
 startQuizButtonEl.addEventListener("click", startQuiz);
@@ -70,17 +70,18 @@ function startQuiz() {
     quizContainerEl.classList.remove("hidden");
     startTimer();
     renderQuestion();
-}
+  }
+  
 
 function startTimer() {
     countdownEl.textContent = timeRemaining;
     var timeInterval = setInterval(function () {
-    timeRemaining--;
-    countdownEl.textContent = timeRemaining;
-    if (timeRemaining == 0 || currentQuestionIndex == questionsArray.length) {
-        clearInterval(timeInterval);
-    }
-    },1000)
+        timeRemaining--;
+        countdownEl.textContent = timeRemaining;
+        if (timeRemaining == 0 || currentQuestionIndex == questionsArray.length) {
+            clearInterval(timeInterval);
+        }
+    }, 1000)
 }
 
 function renderQuestion () {
@@ -93,9 +94,9 @@ function renderQuestion () {
         answersContainerEl.appendChild(answerButton);
         answerButton.addEventListener("click", nextQuestion);
     });
-}
+  }
 
-function nextQuestion() {
+  function nextQuestion() {
     if (this.innerHTML === questionsArray[currentQuestionIndex].correct) {
         correctIncorrectText.innerHTML = "Correct";
         timeRemaining += 10;
@@ -109,33 +110,47 @@ function nextQuestion() {
     }   else {
         renderQuestion();
     }
-}
+  }
 
-function endQuiz() {
+  function endQuiz() {
     quizContainerEl.classList.add("hidden");
-    completedContainerEl.classList.remove("hidden");
+    finishedContainerEl.classList.remove("hidden");
     scoreContainerEl.innerHTML = timeRemaining;
-}
+  }
 
-function makeLi(text) {
+  function makeLi(text) {
     var li = document.createElement("li");
     li.textContent = text;
     highScoresContainerEl.appendChild(li);
-}
+  }
 
-formEl.addEventListener("submit", function (event) {
+  formEl.addEventListener("submit", function (event) {
     event.preventDefault();
     scoresArray.push(initialsInputEl.value + " - " + timeRemaining);
     localStorage.setItem("scores", JSON.stringify(scoresArray));
     makeLi(initialsInputEl.value = " - " + timeRemaining);
     initialsInputEl.value = "";
-    completedContainerEl.classList.add("hidden");
+    finishedContainerEl.classList.add("hidden");
     scoreContainerEl.classList.remove("hidden");
-});
+  });
 
-data.forEach((item) => {
+  data.forEach((item) => {
     makeLi(item);
-});
+  });
+
+  restartButtonEl.addEventListener("click", function () {
+    location.reload();
+  });
+
+  clearScoresButtonEl.addEventListener("click", function() {
+    localStorage.clear();
+    while (highScoresContainerEl.firstChild) {
+        highScoresContainerEl.removeChild(
+            highScoresContainerEl.firstChild
+        )
+    }
+  });
+
 
 
 

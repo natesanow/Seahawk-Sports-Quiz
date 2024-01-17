@@ -38,7 +38,15 @@ header p {
     font-size: 15px;
     margin: 25px;
 }
-  
+
+#view-high-scores {
+    color: var(--light);
+    font-size: 15px;
+    text-decoration: none;
+}
+
+
+
 main {
     margin: 50px 25% 50px 25%;
     text-align: center;
@@ -67,22 +75,26 @@ main h1, main p {
     grid-auto-columns: max-content;
     }
 
-#quiz, #finished {
-    text-align: left;
-}
+    #finished, #quiz {
+        text-align: left;
+    }
 
-#high-scores {
-    margin-top: 120px;
-    text-align: left;
-}
+    #high-scores {
+        margin-top: 120px;
+        text-align: left;
+    }
 
-#high-scores-container li {
-    background-color: var(--light);
-    list-style: none;
-    margin: 0 0 15px 0;
-    padding: 5px 5px 5px 5px;
-}
+    #high-scores-container li {
+        background-color: var(--blue);
+        list-style: none;
+        margin: 0 0 15px 0;
+        padding: 5px 5px 5px 5px;
+    }
 
-.hidden {
-    display: none;
-}
+    .hidden {
+        display: none;
+    }
+
+    #high-scores.hidden {
+        display: block;
+    }
