@@ -3,12 +3,12 @@ var correctIncorrectText = document.querySelector("#correct-incorrect");
 var countdownEl = document.querySelector("#time");
 var completedContainerEl = document.querySelector("#finished");
 var introductionContainerEl = document.querySelector("#Intro");
-var questionContainerEl = document.querySelector("question");
-var quizContainerEl = document.querySelector("quiz");
-var scoreContainerEl = document.querySelector("score");
-var startQuizButtonEl = document.querySelector("btn-start-quiz");
-var clearScoresButtonEl = document.querySelector("btn-clear-high-scores");
-var initialsInputEl = document.querySelector("#intials");
+var questionContainerEl = document.querySelector("#question");
+var quizContainerEl = document.querySelector("#quiz");
+var scoreContainerEl = document.querySelector("#score");
+var startQuizButtonEl = document.querySelector("#btn-start-quiz");
+var clearScoresButtonEl = document.querySelector("#btn-clear-high-scores");
+var initialsInputEl = document.querySelector("#initials");
 var formEl = document.querySelector("#form");
 var restartButton = document.querySelector("#btn-restart");
 var highScoresContainerEl = document.querySelector("#high-scores-container");
@@ -28,7 +28,7 @@ var data = JSON.parse(localStorage.getItem("scores"));
 
 var viewHighScoresLinkEl = document.querySelector("#view-high-scores");
 
-var questionArray = [
+var questionsArray = [
     {
         question: "What year did the Seahawks win the Super Bowl?",
         answers: ["2006", "2012", "2014", "2018"],
@@ -67,7 +67,7 @@ startQuizButtonEl.addEventListener("click", startQuiz);
 
 function startQuiz() {
     introductionContainerEl.classList.add("hidden");
-    quizContainerEl.classList.add("hidden");
+    quizContainerEl.classList.remove("hidden");
     startTimer();
     renderQuestion();
 }
@@ -77,7 +77,7 @@ function startTimer() {
     var timeInterval = setInterval(function () {
     timeRemaining--;
     countdownEl.textContent = timeRemaining;
-    if (timeRemaining == 0 || currentQuestionIndex == questionArray.length) {
+    if (timeRemaining == 0 || currentQuestionIndex == questionsArray.length) {
         clearInterval(timeInterval);
     }
     },1000)
@@ -104,7 +104,7 @@ function nextQuestion() {
         timeRemaining -= 10;
     }
     currentQuestionIndex++;
-    if (timeRemaining == 0 || currentQuestionIndex == questionArray.length) {
+    if (timeRemaining == 0 || currentQuestionIndex == questionsArray.length) {
         endQuiz();
     }   else {
         renderQuestion();
@@ -123,6 +123,19 @@ function makeLi(text) {
     highScoresContainerEl.appendChild(li);
 }
 
+formEl.addEventListener("submit", function (event) {
+    event.preventDefault();
+    scoresArray.push(initialsInputEl.value + " - " + timeRemaining);
+    localStorage.setItem("scores", JSON.stringify(scoresArray));
+    makeLi(initialsInputEl.value = " - " + timeRemaining);
+    initialsInputEl.value = "";
+    completedContainerEl.classList.add("hidden");
+    scoreContainerEl.classList.remove("hidden");
+});
+
+data.forEach((item) => {
+    makeLi(item);
+});
 
 
 

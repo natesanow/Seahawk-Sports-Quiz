@@ -1,88 +1,88 @@
 :root {
-    --blue: rgb(0, 34, 68);
-    --green: rgb(105,190,40);
-    --light: whitesmoke;
-  }
+  --blue: rgb(0, 34, 68);
+  --green: rgb(105,190,40);
+  --light: whitesmoke;
+}
   
   
-  * {
-      box-sizing: inherit;
-      margin: 0;
-      padding: 0;
-  }
+* {
+    box-sizing: inherit;
+    margin: 0;
+    padding: 0;
+}
   
-  body {
-      color: var(--light);
-      background-color: var(--blue);
-      font-family: Arial, Helvetica, sans-serif;
-  }
+body {
+    color: var(--light);
+    background-color: var(--blue);
+    font-family: Arial, Helvetica, sans-serif;
+}
   
-  button, input[type=submit] {
-      color: var(--light);
-      background-color: var(--green);
-      cursor: pointer;
-      border: none;
-      display: inline-block;
-      font-size: 15px;
-      margin: 0 0 16px 0;
-      padding: 5px 20px 5px 20px;
-      text-align: center;
-  }
+button, input[type=submit] {
+    color: var(--light);
+    background-color: var(--green);
+    cursor: pointer;
+    border: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 0 0 16px 0;
+    padding: 5px 20px 5px 20px;
+    text-align: center;
+}
   
-  header {
-      display: flex;
-      justify-content: space-between;
-  }
+header {
+    display: flex;
+    justify-content: space-between;
+}
   
-  header p {
-      font-size: 15px;
-      margin: 25px;
-  }
+header p {
+    font-size: 15px;
+    margin: 25px;
+}
   
-  main {
-      margin: 50px 25% 50px 25%;
-      text-align: center;
-  }
+main {
+    margin: 50px 25% 50px 25%;
+    text-align: center;
+}
   
-  main h1 {
-      font-size: 30px;
-  }
+main h1 {
+    font-size: 30px;
+}
   
-  main h2 {
-      color: grey;
-      font-size: 26px;
-      font-weight: bold;
-  }
+main h2 {
+    color: grey;
+    font-size: 26px;
+    font-weight: bold;
+}
   
-  main p {
-      font-size: 15px;
-  }
+main p {
+    font-size: 15px;
+}
   
-  main h1, main p {
-      margin: 0 0 15px;
-  }
+main h1, main p {
+    margin: 0 0 15px;
+}
 
-  #answers {
+#answers {
     display: grid;
     grid-auto-columns: max-content;
-  }
+    }
 
-  #done, #quiz {
+#quiz, #finished {
     text-align: left;
-  }
+}
 
-  #high-scores {
+#high-scores {
     margin-top: 120px;
     text-align: left;
-  }
+}
 
-  #high-scores-container li {
+#high-scores-container li {
     background-color: var(--light);
     list-style: none;
     margin: 0 0 15px 0;
     padding: 5px 5px 5px 5px;
-  }
+}
 
-  .hidden {
+.hidden {
     display: none;
-  }
+}
