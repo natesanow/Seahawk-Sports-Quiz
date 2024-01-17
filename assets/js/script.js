@@ -56,5 +56,46 @@ var questionArray = [
     },
 ];
 
+viewHighScoresLinkEl.addEventListener("click", function() {
+    scoreContainerEl.classList.remove("hidden");
+    introductionContainerEl.classList.add("hidden");
+    quizContainerEl.classList.add("hidden");
+    completedContainerEl.classList.add("hidden");
+});
+
+startQuizButtonEl.addEventListener("click", startQuiz);
+
+function startQuiz() {
+    introductionContainerEl.classList.add("hidden");
+    quizContainerEl.classList.add("hidden");
+    startTimer();
+    renderQuestion();
+}
+
+function startTimer() {
+    countdownEl.textContent = timeRemaining;
+    var timeInterval = setInterval(function () {
+    timeRemaining--;
+    countdownEl.textContent = timeRemaining;
+    if (timeRemaining == 0 || currentQuestionIndex == questionArray.length) {
+        clearInterval(timeInterval);
+    }
+    },1000)
+}
+
+function renderQuestion () {
+    var currentQuestion = questionsArray[currentQuestionIndex];
+    questionContainerEl.textContent = currentQuestion.question;
+    answersContainerEl.innerHTML = "";
+    currentQuestion.answers.forEach(function (answer) {
+        var answerButton = document.createElement("button");
+        answerButton.textContent = answer;
+        answersContainerEl.appendChild(answerButton);
+        answerButton.addEventListener("click", nextQuestion);
+    });
+}
+
+
+
 
 
