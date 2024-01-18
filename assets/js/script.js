@@ -1,3 +1,4 @@
+// Variable Selectors
 var answersContainerEl = document.querySelector("#answers");
 var correctIncorrectText = document.querySelector("#correct-incorrect");
 var countdownEl = document.querySelector("#time");
@@ -13,10 +14,10 @@ var formEl = document.querySelector("#form");
 var restartButtonEl = document.querySelector("#btn-restart");
 var highScoresContainerEl = document.querySelector("#high-scores-container");
 var scoresContainer = document.querySelector("#high-scores");
-
+// Other Quiz Variables
 var currentQuestionIndex = 0;
 var timeRemaining = 75;
-
+// High Scores local storage
 var scoresArray;
 if (localStorage.getItem("scores")) {
     scoresArray = JSON.parse(localStorage.getItem("scores"));
@@ -25,9 +26,9 @@ if (localStorage.getItem("scores")) {
 }
 localStorage.setItem("scores", JSON.stringify(scoresArray));
 var data = JSON.parse(localStorage.getItem("scores"));
-
+// View High Scores
 var viewHighScoresLinkEl = document.querySelector("#view-high-scores");
-
+// Array of Questions 
 var questionsArray = [
     {
         question: "What year did the Seahawks win the Super Bowl?",
@@ -55,14 +56,14 @@ var questionsArray = [
         correct: "Shaun Alexander"
     },
 ];
-
+// Click Events for High Scores
 viewHighScoresLinkEl.addEventListener("click", function() {
     scoreContainerEl.classList.remove("hidden");
     introductionContainerEl.classList.add("hidden");
     quizContainerEl.classList.add("hidden");
     finishedContainerEl.classList.add("hidden");
 });
-
+// Click event for start button
 startQuizButtonEl.addEventListener("click", startQuiz);
 
 function startQuiz() {
@@ -117,13 +118,13 @@ function renderQuestion () {
     finishedContainerEl.classList.remove("hidden");
     scoreContainerEl.innerHTML = timeRemaining;
   }
-
+// Make line items for high scores board
   function makeLi(text) {
     var li = document.createElement("li");
     li.textContent = text;
     highScoresContainerEl.appendChild(li);
   }
-
+//Save initials and Score and submit event
   formEl.addEventListener("submit", function (event) {
     event.preventDefault();
     scoresArray.push(initialsInputEl.value + " - " + timeRemaining);
@@ -137,11 +138,11 @@ function renderQuestion () {
   data.forEach((item) => {
     makeLi(item);
   });
-
+// restart click event 
   restartButtonEl.addEventListener("click", function () {
     location.reload();
   });
-
+// Clear high score click event
   clearScoresButtonEl.addEventListener("click", function() {
     localStorage.clear();
     while (highScoresContainerEl.firstChild) {
